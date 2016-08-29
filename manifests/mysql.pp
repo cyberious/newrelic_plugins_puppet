@@ -78,22 +78,20 @@
 #   }
 #
 class newrelic_plugins::mysql (
-    $license_key,
-    $install_path,
-    $user,
-    $version = $newrelic_plugins::params::mysql_version,
-    $servers,
-    $metrics = '',
-    $mysql_user = '',
-    $mysql_passwd = '',
-    $java_options = $newrelic_plugins::params::mysql_java_options,
-    $newrelic_template = 'newrelic_plugins/mysql/newrelic.json.erb',
-    $plugin_template = 'newrelic_plugins/mysql/plugin.json.erb',
-    $service_enable = true,
-    $service_ensure = running,
-) inherits params {
-
-  include stdlib
+  $license_key,
+  $install_path,
+  $user,
+  $servers,
+  $version = $newrelic_plugins::params::mysql_version,
+  $metrics = '',
+  $mysql_user = '',
+  $mysql_passwd = '',
+  $java_options = $newrelic_plugins::params::mysql_java_options,
+  $newrelic_template = 'newrelic_plugins/mysql/newrelic.json.erb',
+  $plugin_template = 'newrelic_plugins/mysql/plugin.json.erb',
+  $service_enable = true,
+  $service_ensure = running,
+) inherits newrelic_plugins::params {
 
   # verify java is installed
   newrelic_plugins::resource::verify_java { 'MySQL Plugin': }
@@ -115,7 +113,7 @@ class newrelic_plugins::mysql (
   newrelic_plugins::resource::install_plugin { 'newrelic_mysql_plugin':
     install_path => $install_path,
     plugin_path  => $plugin_path,
-    download_url => "${$newrelic_plugins::params::mysql_download_baseurl}-${version}.tar.gz",
+    download_url => "${newrelic_plugins::params::mysql_download_baseurl}-${version}.tar.gz",
     version      => $version,
     user         => $user
   }
@@ -162,4 +160,3 @@ class newrelic_plugins::mysql (
   ->
   Newrelic_plugins::Resource::Plugin_service['newrelic-mysql-plugin']
 }
-

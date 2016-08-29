@@ -68,7 +68,7 @@ class newrelic_plugins::memcached_java (
     $version = $newrelic_plugins::params::memcached_java_version,
     $servers,
     $java_options = $newrelic_plugins::params::memcached_java_options,
-) inherits params {
+) inherits newrelic_plugins::params {
 
   include stdlib
 
@@ -92,7 +92,7 @@ class newrelic_plugins::memcached_java (
   newrelic_plugins::resource::install_plugin { 'newrelic_memcached_java_plugin':
     install_path => $install_path,
     plugin_path  => $plugin_path,
-    download_url => "${$newrelic_plugins::params::memcached_java_download_baseurl}-${version}.tar.gz",
+    download_url => "${newrelic_plugins::params::memcached_java_download_baseurl}-${version}.tar.gz",
     version      => $version,
     user         => $user
   }
@@ -137,4 +137,3 @@ class newrelic_plugins::memcached_java (
   ->
   Newrelic_plugins::Resource::Plugin_service['newrelic-memcached-java-plugin']
 }
-

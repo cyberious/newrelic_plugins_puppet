@@ -1,11 +1,11 @@
 define newrelic_plugins::resource::plugin_service (
-  $ensure         = present,
   $user,
   $daemon_dir,
   $plugin_name,
   $plugin_version,
   $run_command,
   $service_name,
+  $ensure         = present,
   $service_enable = true,
   $service_ensure = running,
   $daemon         = '',

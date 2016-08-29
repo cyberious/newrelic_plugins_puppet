@@ -52,4 +52,3 @@ class newrelic_plugins::params {
   $wikipedia_example_ruby_version = '1.0.3'
   $wikipedia_example_ruby_download_baseurl = 'https://github.com/newrelic-platform/newrelic_wikipedia_plugin/archive'
 }
-

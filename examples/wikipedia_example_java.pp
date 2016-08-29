@@ -58,7 +58,7 @@ class newrelic_plugins::wikipedia_example_java (
   newrelic_plugins::resource::install_plugin { 'newrelic_wikipedia_example_java_plugin':
     install_path => $install_path,
     plugin_path  => $plugin_path,
-    download_url => "${$newrelic_plugins::params::wikipedia_example_java_download_baseurl}-${version}.tar.gz",
+    download_url => "${newrelic_plugins::params::wikipedia_example_java_download_baseurl}-${version}.tar.gz",
     version      => $version,
     user         => $user
   }

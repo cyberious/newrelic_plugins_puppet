@@ -41,14 +41,12 @@
 #   }
 #
 class newrelic_plugins::f5 (
+    $agents,
     $license_key,
     $install_path,
     $user,
     $version = $newrelic_plugins::params::f5_version,
-    $agents,
-) inherits params {
-
-  include stdlib
+) inherits newrelic_plugins::params {
 
   # verify ruby is installed
   newrelic_plugins::resource::verify_ruby { 'F5 Plugin': }
@@ -81,9 +79,9 @@ class newrelic_plugins::f5 (
   }
 
   file { "${plugin_path}/config":
-    ensure  => directory,
-    mode    => '0644',
-    owner   => $user
+    ensure => directory,
+    mode   => '0644',
+    owner  => $user
   }
 
   # newrelic_plugin.yml template
@@ -118,4 +116,3 @@ class newrelic_plugins::f5 (
   ->
   Newrelic_plugins::Resource::Plugin_service['newrelic-f5-plugin']
 }
-

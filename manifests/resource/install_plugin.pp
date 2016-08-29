@@ -3,7 +3,7 @@ define newrelic_plugins::resource::install_plugin (
   $plugin_path,
   $user,
   $download_url,
-  $version
+  $version,
 ) {
 
   $tar_file = "${name}-${version}.tar.gz"
